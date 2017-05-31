@@ -1,0 +1,45 @@
+/*Master CSS*/
+*{
+	margin: 0;
+	padding: 0;
+}
+#navigation{
+	border-radius: 0px;
+	height: auto;
+	border-top: 0;
+	margin-bottom: 0;
+}
+#logo{
+	padding:0;
+}
+#logo img{
+	height:50px;
+}
+
+#navItems ul li{
+	padding-right: 10px;
+	padding-left: 10px;
+}
+#location{
+	height:30px;
+	background:#ecf0f1;
+}
+#location a{
+	text-decoration:none;
+	color:#3F3D3D;
+	line-height: 30px;
+}
+header{
+	color:#2c3e50;
+}
+header h3,p,input{
+	padding-bottom:20px;
+}
+#search button{
+	border:none;
+	background:none;
+}
+#search span{
+	background:#2c3e50;
+	color:#fff;
+}
