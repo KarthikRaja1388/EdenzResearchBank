@@ -31,6 +31,7 @@
 }
 header{
 	color:#2c3e50;
+	padding-bottom:20px;
 }
 header h3,p,input{
 	padding-bottom:20px;
@@ -42,4 +43,38 @@ header h3,p,input{
 #search span{
 	background:#2c3e50;
 	color:#fff;
+}
+main{
+	color:#2c3e50;
+}
+main h3{
+	color:#16a085;
+}
+.recentlyAddedProjects{
+	padding:10px;
+	color:#7f8c8d;
+}
+.recentlyAddedProjects h4{
+	color:#34495e;
+}
+#colLeft{
+	border-right: 1px solid #95a5a6;
+}
+#social{
+	text-align:center;
+}
+#colRight div{
+	padding-bottom:25px;
+}
+footer{
+	height:60px;
+	line-height:60px;
+	text-align:center;
+	background:#bdc3c7;
+}
+
+@media screen and (max-width:480px){
+	#colLeft{
+	border-right: none;
+}
 }
