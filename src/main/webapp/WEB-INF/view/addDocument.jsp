@@ -7,27 +7,26 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <s:url var="master_style" value="/Resources/css/master.css" />
+        <s:url var="master_style" value="/Resources/css/masterManager.css" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
         <link href="${master_style}" rel="stylesheet" type="text/css"/>
         <title>Add Document - Edenz Research Manager</title>
     </head>
     <body>
-        <div class="container-fluid" id="titleContainer">
-            <div class="row" id="titleInfo">
-                <h3 class="text-left col-md-6">Research Bank Manager</h3>
-                <div class="col-md-6" id="userInfo"><p class="pull-right">Super User</p></div>
-            </div>
-        </div>
         <jsp:include page="include/menu.jsp" />
         <div class="container-fluid">
             <div class="col-md-8 col-md-offset-2">
                 <s:url var="saveDoc_url" value = "/admin/saveDocument" />
+                <s:url var="upload_url" value="/admin/upload" />
                 <h3 class="text-center well">Add Document</h3>
-                <f:form class="col-md-8 col-md-offset-2" action="${saveDoc_url}" method="post" modelAttribute="command">
+                <f:form class="col-md-8 col-md-offset-2" action="${saveDoc_url}"  method="post" modelAttribute="command">
                     <div class="form-group">
                         <label for="title">Title</label>
                         <f:input path="title" class="form-control" id="title" />
+                    </div>
+                    <div class="form-group">
+                        <label for="citation">Citation</label>
+                        <f:textarea path="citation" class="form-control" id="citation" />
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
@@ -43,18 +42,36 @@
                         </f:select>
                     </div>
                     
+                        <s:url var="upload_url" value="/admin/uploadForm" />
+                        
                     <div class="form-group">
-                        <label for="exampleInputFile">File Upload</label>
-                        <f:input path="document" type="file" id="fileUpload" />
-                        <p class="help-block">Select files to upload</p>
+                            <label for="fileUpload">Upload File</label>
+                            <f:input path="file" type="file" name="file" class="form-control"/>
                     </div>
+                    
                     <div class="form-group">
                         <label for="publishedOn">Published On</label>
                         <f:input path="published_on" type="date" class="form-control" id="publishedOn" />
                     </div>
                     <div class="form-group">
-                        <label for="authors">Authors</label>
-                        <f:input path="authors" type="text" class="form-control" id="authors" />
+                        <label for="author_one">Author 1</label>
+                        <f:input path="author_one" type="text" class="form-control" id="author_one" placeholder="Firstname, Lastname"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="author_two">Author 2</label>
+                        <f:input path="author_two" type="text" class="form-control" id="author_two" placeholder="Firstname, Lastname"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="author_three">Author 3</label>
+                        <f:input path="author_three" type="text" class="form-control" id="author_three" placeholder="Firstname, Lastname"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="author_four">Author 4</label>
+                        <f:input path="author_four" type="text" class="form-control" id="author_four" placeholder="Firstname, Lastname"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="keywords">Keywords</label>
+                        <f:input path="keywords" type="text" class="form-control" id="keywords" />
                     </div>
                     
                     <div class="form-group">
@@ -63,7 +80,7 @@
                 </f:form>
             </div>
         </div>
-
+                
 
         <s:url var="mainJs" value="/Resources/js/script.js" />
 

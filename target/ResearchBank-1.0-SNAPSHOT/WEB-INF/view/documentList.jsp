@@ -8,7 +8,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <s:url var="master_style" value="/Resources/css/master.css" />
+        <s:url var="master_style" value="/Resources/css/masterManager.css" />
         <s:url var="userList_style" value="/Resources/css/userList.css" />
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
@@ -16,12 +16,6 @@
         <title>Document List - Edenz Research Manager</title>
     </head>
     <body>
-        <div class="container-fluid" id="titleContainer">
-            <div class="row" id="titleInfo">
-                <h3 class="text-left col-md-6">Research Bank Manager</h3>
-                <div class="col-md-6" id="userInfo"><p class="pull-right">Super User</p></div>
-            </div>
-        </div>
         <jsp:include page="include/menu.jsp" />
         <div class="container-fluid">
             <div class="col-md-12">
@@ -45,48 +39,55 @@
                     </div>
                 </c:if>
 
-                <table class="table table-hover">
+                <table class="table table-hover table-striped">
                     <tr>
                         <th>DOCUMENT ID</th>
-                        <th>USER ID</th>
                         <th>TITLE</th>
                         <th>DESCRIPTION</th>
                         <th>DEPARTMENT</th>
                         <th>PUBLISHED ON</th>
-                        <th>AUTHORS</th>
-                        <th>DOCUMENT</th>  
+                        <th>AUTHOR 1</th>
+                        <th>AUTHOR 2</th>
+                        <th>AUTHOR 3</th>
+                        <th>AUTHOR 4</th>
+                        <th>DOCUMENT</th>
+                        <th>ACTION</th>
                     </tr>
-                    <c:forEach var="depDocument" items="${document}" varStatus="status">
-
+                    <c:forEach var="document" items="${document}" varStatus="status">
                         <tr>
-                            <td>${depDocument.document_id}</td>
-                            <td>${depDocument.user_id}</td>
-                            <td>${depDocument.title}</td>
-                            <td>${depDocument.description}</td>
-                            <td>${depDocument.department}</td>
-                            <td>${depDocument.published_on}</td>
-                            <td>${depDocument.authors}</td>
-                            <td>${depDocument.document}</td>
-
+                            <td>ED${document.document_id}</td>
+                            <td><div style="height: 80px;overflow:hidden;">${document.title}</div></td>
+                            <td ><div style="height: 80px;overflow:hidden;">${document.description}</div></td>
+                            <td>${document.department}</td>
+                            <td>${document.published_on}</td>
+                            <td>${document.author_one}</td>
+                            <td>${document.author_two}</td>
+                            <td>${document.author_three}</td>
+                            <td>${document.author_four}</td>
+                            
                             <s:url var="delete_url" value="/admin/deleteDocument" >
-                                <s:param  name="documentId" value="${depDocument.document_id}"/>
+                                <s:param  name="documentId" value="${document.document_id}"/>
                             </s:url>
                             <s:url var="edit_url" value="/admin/editDocument" >
-                                <s:param  name="documentId" value="${depDocument.document_id}"/>
+                                <s:param  name="documentId" value="${document.document_id}"/>
                             </s:url>
                             <td><a href="${edit_url}">Edit&nbsp;</a> |<a href="${delete_url}"> Delete</a></td>
                         </tr>
+                        <tr>
+                            <c:if test="${document.title eq ''}">
+                            <tr>
+                                <td colspan="10">No documents found</td>
+                            </tr>
+                            </c:if>
                         </c:forEach>
                     </table>
                 </div>
             </div>
             <s:url var="mainJs" value="/Resources/js/script.js" />
-            <s:url var="editableJs" value="/Resources/js/bootstrap-editable.min.js" />
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             <script src="${mainJs}"></script>
-            <script src="${editableJs}"></script>
             <script type="text/javascript">
                 $(function () {
                     $('[data-toggle="tooltip"]').tooltip();

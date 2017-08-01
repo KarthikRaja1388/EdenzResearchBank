@@ -70,5 +70,4 @@ public class UserDAOImpl extends BaseDAO implements IUserDAO{
        getJdbcTemplate().update(query, userId);
     }
 
-    
 }

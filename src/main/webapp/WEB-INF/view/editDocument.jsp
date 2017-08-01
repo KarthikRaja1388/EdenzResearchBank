@@ -11,65 +11,82 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Edit Document - Edenz Research Bank Manager</title>
 
-        <s:url var="master_style" value="/Resources/css/master.css" />
+        <s:url var="master_style" value="/Resources/css/masterManager.css" />
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
         <link href="${master_style}" rel="stylesheet" type="text/css"/>
 
     </head>
     <body>
-        <div class="container-fluid" id="titleContainer">
-            <div class="row" id="titleInfo">
-                <h3 class="text-left col-md-6">Research Bank Manager</h3>
-                <div class="col-md-6" id="userInfo"><p class="pull-right">Super User</p></div>
-            </div>
-        </div>
+<!--TO DO Update -->
         <jsp:include page="include/menu.jsp" />
         <div class="container-fluid">
             <div class="col-md-8 col-md-offset-2 ">
-            <h3 class="text-center well">Edit Document</h3>
-            <s:url var="updateDocument_url" value="/admin/updateDocument" >
-                <s:param name="document" value="${document_id}" />
-            </s:url>
-            <p>${update_error}</p>
+                <h3 class="text-center well">Edit Document</h3>
+                <s:url var="updateDocument_url" value="/admin/updateDocument" >
+                    <s:param name="documentid" value="${document.document_id}" />
+                </s:url>
+                <c:if test="${param.act eq 'f'}">
+                    <div class="well alert-warning">Failed to update</div>
+                </c:if>
 
-            <f:form class="col-md-8 col-md-offset-2" action="${updateDocument_url}" method="post" modelAttribute="document" >
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <f:input path="title"  class="form-control" id="title" />
-                </div>
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <f:input path="description"  class="form-control" id="description" />
-                </div>
-                <div class="form-group">
-                    <label for="department">Department</label>
-                    <f:select path="department" class="form-control" >
-                        <f:option value="select Department" />
-                        <f:option value="English" />
-                        <f:option value="Business" />
-                        <f:option value="Film" />
-                        <f:option value="Digital Media" />
-                        <f:option value="Health" />
-                        <f:option value="Technology" />
-                    </f:select>
-                </div>
-                <div class="form-group">
-                    <label for="date">Published on</label>
-                    <f:input type="date" path="published_on" class="form-control" id="date" />
-                </div>
-                <div class="form-group">
-                    <label for="authors">Authors</label>
-                    <f:input path="authors" class="form-control" id="authors" />
-                </div>
-                <div class="form-group">
-                    <label for="document">Document</label>
-                    <f:input path="document" class="form-control" id="document" />
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary form-control">Submit</button>
-                </div>
-            </f:form>
+                <f:form class="col-md-8 col-md-offset-2" action="${updateDocument_url}" method="post" modelAttribute="document" >
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <f:input path="title"  class="form-control" id="title" />
+                    </div>
+                    <div class="form-group">
+                        <label for="citation">Citation</label>
+                        <f:textarea path="citation" class="form-control" id="citation" />
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <f:textarea path="description"  class="form-control" id="description" />
+                    </div>
+                    <div class="form-group">
+                        <label for="department">Department</label>
+                        <f:select path="department" class="form-control" >
+                            <f:option value="select Department" />
+                            <f:option value="English" />
+                            <f:option value="Business" />
+                            <f:option value="Film" />
+                            <f:option value="Digital Media" />
+                            <f:option value="Health" />
+                            <f:option value="Technology" />
+                        </f:select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Published on</label>
+                        <f:input type="date" path="published_on" class="form-control" id="date" />
+                    </div>
+                    <div class="form-group">
+                        <label for="author_one">Author 1</label>
+                        <f:input path="author_one" type="text" class="form-control" id="author_one" />
+                    </div>
+                    <div class="form-group">
+                        <label for="author_two">Author 2</label>
+                        <f:input path="author_two" type="text" class="form-control" id="author_two" />
+                    </div>
+                    <div class="form-group">
+                        <label for="author_three">Author 3</label>
+                        <f:input path="author_three" type="text" class="form-control" id="author_three" />
+                    </div>
+                    <div class="form-group">
+                        <label for="author_four">Author 4</label>
+                        <f:input path="author_four" type="text" class="form-control" id="author_four" />
+                    </div>
+                    <div class="form-group">
+                        <label for="keywords">Keywords</label>
+                        <f:input path="keywords" type="text" class="form-control" id="keywords" />
+                    </div>
+                    <div class="form-group">
+                        <label for="document">Document</label>
+                        <f:input path="file" type="file" class="form-control" id="document" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary form-control">Submit</button>
+                    </div>
+                </f:form>
             </div>
         </div>
 

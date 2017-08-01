@@ -11,19 +11,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Edit User - Edenz Research Bank Manager</title>
 
-        <s:url var="master_style" value="/Resources/css/master.css" />
+        <s:url var="master_style" value="/Resources/css/masterManager.css" />
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
         <link href="${master_style}" rel="stylesheet" type="text/css"/>
 
     </head>
     <body>
-        <div class="container-fluid" id="titleContainer">
-            <div class="row" id="titleInfo">
-                <h3 class="text-left col-md-6">Research Bank Manager</h3>
-                <div class="col-md-6" id="userInfo"><p class="pull-right">Super User</p></div>
-            </div>
-        </div>
         <jsp:include page="include/menu.jsp" />
         <div class="container-fluid">
             <div class="col-md-8 col-md-offset-2 ">

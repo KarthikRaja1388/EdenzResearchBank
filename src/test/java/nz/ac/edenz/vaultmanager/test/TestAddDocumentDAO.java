@@ -18,7 +18,7 @@ public class TestAddDocumentDAO {
         document.setTitle("Emerging Technology");
         document.setDescription("Test DEsc");
         document.setPublished_on("25/06/2017");
-        document.setAuthors("authors");
+        //document.setAuthors("authors");
         document.setDepartment("IT");
         
         documentDAO.addDocument(document);

@@ -11,8 +11,6 @@ import nz.ac.edenz.ResearchBank.exception.UserDiabledException;
 import nz.ac.edenz.ResearchBank.rowmapper.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -85,5 +83,20 @@ public class UserServiceImpl extends BaseDAO implements IUserService{
        getJdbcTemplate().update(query, user.getFirst_name(),user.getLast_name(),user.getDepartment(),user.getEmail(),
               user.getRole(),user.getAccount_status(),user.getUser_id() );
     }
+
+    @Override
+    public User findUserByEmail(String email) {
+        String query = "SELECT * FROM user_info WHERE email = ?";
+        return getJdbcTemplate().queryForObject(query, new UserRowMapper(),email);
+    }
+
+    @Override
+    public Integer findNumberOfAdmins(String accountStatus) {
+        String query = "SELECT COUNT(*) FROM user_info WHERE account_status = '"+accountStatus+"'";
+        Integer rows = getJdbcTemplate().queryForObject(query,Integer.class);
+        return rows;    
+    }
+    
+    
     
 }

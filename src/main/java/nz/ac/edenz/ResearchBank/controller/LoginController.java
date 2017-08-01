@@ -3,8 +3,10 @@ package nz.ac.edenz.ResearchBank.controller;
 
 import javax.servlet.http.HttpSession;
 import nz.ac.edenz.ResearchBank.command.LoginCommand;
+import nz.ac.edenz.ResearchBank.entity.Document;
 import nz.ac.edenz.ResearchBank.entity.User;
 import nz.ac.edenz.ResearchBank.exception.UserDiabledException;
+import nz.ac.edenz.ResearchBank.services.IDocumentService;
 import nz.ac.edenz.ResearchBank.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,8 @@ public class LoginController {
   
     @Autowired
     private IUserService userService;
+    @Autowired
+    private IDocumentService documentService;
     
     @RequestMapping("/loginApp")
     public String loginPage(Model model){
@@ -25,7 +29,7 @@ public class LoginController {
         return "loginPage";
     }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginHandler(@ModelAttribute("login") LoginCommand loginCommand,Model model,HttpSession session){
+    public String loginHandler(@ModelAttribute("login") LoginCommand loginCommand,@ModelAttribute("document")Document document,Model model,HttpSession session){
         try {
             User loggedinUser = userService.login(loginCommand.getLoginName(), loginCommand.getPassword());
             if(loggedinUser == null){
@@ -37,10 +41,11 @@ public class LoginController {
                 }else{
                     if(loggedinUser.getRole().equals(IUserService.USER_ROLE_SUPER_USER)){   
                         addUserInSession(loggedinUser, session);
-                        return "redirect:admin/dashboard";
+
+                        return "redirect:/admin/dashboard";
                     }else if(loggedinUser.getRole().equals(IUserService.USER_ROLE_ADMIN)){
                         addUserInSession(loggedinUser, session);
-                        return "redirect:depAdmin/dashboard";
+                        return "redirect:/depAdmin/dashboard";
                     }else{
                         model.addAttribute("error", "Invalid User Role");
                         return "loginPage";
@@ -55,12 +60,28 @@ public class LoginController {
         }
     }
     @RequestMapping(value = "/depAdmin/dashboard")
-    public String userDashboard(Model model){
-        
+    public String userDashboard(Model model,HttpSession session){
+        String email = (String) session.getAttribute("email");
+        String department = (String) session.getAttribute("department");
+        String accountStatus = (String) session.getAttribute("status");
+        User currentUser = userService.findUserByEmail(email);
+        model.addAttribute("currentUser", currentUser.getFirst_name());
+        model.addAttribute("userRole", currentUser.getRole());
+        model.addAttribute("numberOfActiveUsers", userService.findNumberOfAdmins(accountStatus));
+        model.addAttribute("depDocument", documentService.findDocumentByDepartment(department));
+        model.addAttribute("documentCount",documentService.findNumberofDocument());
         return "user_dashboard";
     }
     @RequestMapping(value = "/admin/dashboard")
-    public String adminDashboard(){
+    public String adminDashboard(Model model,HttpSession session){
+        String currentUserName = (String) session.getAttribute("userFirstName");
+        String role = (String) session.getAttribute("role");
+        String accountStatus = (String) session.getAttribute("status");
+        model.addAttribute("currentUser", currentUserName);
+        model.addAttribute("userRole", role);
+        model.addAttribute("numberOfActiveUsers", userService.findNumberOfAdmins(accountStatus));
+        model.addAttribute("documents",documentService.findRecentDocuments());
+        model.addAttribute("documentCount",documentService.findNumberofDocument());
         return "admin_dashboard";
     }
     /**
@@ -73,6 +94,9 @@ public class LoginController {
         session.setAttribute("userId", user.getUser_id());
         session.setAttribute("userFirstName", user.getFirst_name());
         session.setAttribute("role", user.getRole());
+        session.setAttribute("email", user.getEmail());
+        session.setAttribute("department", user.getDepartment());
+        session.setAttribute("status", user.getAccount_status());
         
     }
     

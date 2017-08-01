@@ -20,38 +20,12 @@
     </head>
 
     <body>
-        <!--Nav bar-->
-        <nav class="navbar navbar-inverse" id="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navItems" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <!--<a class="navbar-brand" href="#" id="logo">EDENZ</a>-->
-                </div>
-                <div class="collapse navbar-collapse" id="navItems">
-                    <ul class="nav navbar-nav">
-                        <li><a href=""><span class="glyphicon glyphicon-home"></span></a></li>
-                        <li><a href="#">Current Projects</a></li>
-                        <li><a href="#">Past Projects</a></li>
-                        <li><a href="#">Staff Research</a></li>
-                        <li><a href="#">Funding</a></li>
-                        <li><a href="#">Ideas</a></li>
-                    </ul>
-                    <s:url var="login_url" value="/loginApp"/>
-                    <ul class="nav navbar-nav pull-right">
-                        <li><a href="${login_url}"><span class="glyphicon glyphicon-user"></span>&nbsp;Login</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <jsp:include page="include/reserachBankNav.jsp" />
+        <s:url var="index_url" value="/" />
         <!--navigator-->
         <div id="location" class="container-fluid">
             <div class="container">
-                <a href="index.html"><p><span class="glyphicon glyphicon-home">&nbsp;</span>Research Bank &gt;</p></a>
+                <p><span class="glyphicon glyphicon-home">&nbsp;</span><a href="${index_url}">Research Bank &gt;</a></p>
             </div>
         </div>
         <!--Header-->
@@ -72,17 +46,29 @@
                 <!--TO DO 
                     need to pass document id as parameter
                 -->
-                <s:url var="document_detail" value="/docDetails" >
-                    <s:param name="selectedDocument" value="${document.document_id}" />
-                </s:url>
-               
+
+
                 <h3 class="text-left">Recently Added</h3>
+                <hr>
+                <c:if test="${param eq 'f'}">
+                    <div class="alert alert-danger text-center">
+                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                        <Strong >Failed to open document</strong>
+                    </div> 
+                </c:if>
+            
                 <div class="col-md-8" id="colLeft">
                     <c:forEach var="researchOutput" items="${document}">
-                        <div class="recentlyAddedProjects">
-                            <a href="#" class="documentTitleLink"><h4>${researchOutput.title}</h4></a>
-                            <h6><span style="font-weight: bold;">Authors :</span><a href="http://www.edenz.ac.nz/k-Teacher/ganeshan-kathiravelu/" target="_blank">${researchOutput.authors}</a></h6>
-                            <p>${researchOutput.description}</p>
+                        <s:url var="docDetails_url" value="/docHandle">
+                            <s:param name="documentId" value="${researchOutput.document_id}" />
+                        </s:url>
+                        <div class="recentlyAddedProjects well">
+                            <a href="${docDetails_url}" class="documentTitleLink"><h4>${researchOutput.title}</h4></a>
+                            <h6><span style="font-weight: bold;">Authors :</span><a href="#" target="_blank">${researchOutput.author_one}</a>;<a href="#" target="_blank">${researchOutput.author_two}</a>;<a href="#" target="_blank">${researchOutput.author_three}</a>;
+                                <a href="#" target="_blank">${researchOutput.author_four}</a></h6>
+                            <div style="overflow: hidden;height:60px;">
+                                <p class="textLimit">${researchOutput.description}</p>
+                            </div>
                         </div>
                     </c:forEach>
                 </div>
@@ -92,39 +78,26 @@
                 <s:url var="linkd_icon" value="/Resources/img/linkd.png" />
                 <s:url var="gplus_icon" value="/Resources/img/gplus.png" />
 
-                <div class="col-md-4" id="colRight">
+                <div class="col-md-4 well" id="colRight">
                     <div id="social">
                         <h4 class="text-center">Share</h4>
                         <hr>
-                        <ul id="socialIcons" class="col-md-12 text-center">
-                            <li><a href="#"><i class="fa fa-facebook icons" aria-hidden="true"></i></a> </li>
+                        <ul class="col-md-12 text-center socialIcons">
+                            <li><a href="#" ><i class="fa fa-facebook icons" aria-hidden="true" id="fb_share" onclick="fb_share()"></i></a> </li>
                             <li><a href="#"><i class="fa fa-twitter icons" aria-hidden="true"></i></a></li>
                             <li><a href="#"><i class="fa fa-linkedin icons" aria-hidden="true"></i></a></li>
                             <li><a href="#"><i class="fa fa-google-plus icons" aria-hidden="true"></i></a></li>
                         </ul>
-                    </div><br>
-                    <div id="tweet">
-                        <h4 class="text-center">News</h4>
-                        <hr>
-                        <div class="well">
-                            <h5>Some News</h5>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                        </div>
-                        <div class="well">
-                            <h5>Same News</h5>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                        </div>
                     </div>
                 </div>
             </div>
         </main>
         <!--footer-->
-        <footer>
-            <small>&copy; 2017 All rights reserved to Edenz College</small>
-        </footer>
+        <jsp:include page="include/footer.jsp" />
+        <s:url var="researchbank_script" value="/Resources/js/researchBank.js" />
         <!--JQuery CDN-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <!-- JS for Bootstrap-->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 </html>

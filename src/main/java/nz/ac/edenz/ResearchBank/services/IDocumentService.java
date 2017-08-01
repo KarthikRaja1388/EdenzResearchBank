@@ -59,10 +59,29 @@ public interface IDocumentService {
      * @param userId
      * @return 
      */
-    public Document findDocumentByUserId(Integer userId);
+    public List<Document> findDocumentByUserId(Integer userId);
     /**
      * Method to find recently added documents
      * @return List of documents
      */
     public List<Document> findRecentDocuments();
+    
+    /**
+     * Method to find the documents by first name
+     * @param firstName holds the value of first name passed
+     * @return List of documents fetched from Database
+     */
+    public List<Document> findDocumentByName(String name);
+    
+    /**
+     * Method to find number of documents
+     * @return the number of documents
+     */
+    public Integer findNumberofDocument();
+    /**
+     * Method to return the number of documents based on the department
+     * @param department holds the value of department passed
+     * @return the number of documents based on the department
+     */
+    public Integer findNumberofDocumentsByDepartment(String department);
 }

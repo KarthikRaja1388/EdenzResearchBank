@@ -8,7 +8,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <s:url var="master_style" value="/Resources/css/master.css" />
+        <s:url var="master_style" value="/Resources/css/masterManager.css" />
         <s:url var="userList_style" value="/Resources/css/userList.css" />
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
@@ -16,12 +16,6 @@
         <title>Admin Users - Edenz Research Manager</title>
     </head>
     <body>
-        <div class="container-fluid" id="titleContainer">
-            <div class="row" id="titleInfo">
-                <h3 class="text-left col-md-6">Research Bank Manager</h3>
-                <div class="col-md-6" id="userInfo"><p class="pull-right">Super User</p></div>
-            </div>
-        </div>
         <jsp:include page="include/menu.jsp" />
         <div class="container-fluid">
             <div class="col-md-10 col-md-offset-1">
@@ -80,12 +74,10 @@
             </div>
         </div>
         <s:url var="mainJs" value="/Resources/js/script.js" />
-        <s:url var="editableJs" value="/Resources/js/bootstrap-editable.min.js" />
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="${mainJs}"></script>
-        <script src="${editableJs}"></script>
         <script type="text/javascript">
         $(function(){
             $('[data-toggle="tooltip"]').tooltip();   

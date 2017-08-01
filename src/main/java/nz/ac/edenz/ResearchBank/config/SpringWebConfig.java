@@ -11,30 +11,30 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-
 @Configuration
 @ComponentScan(basePackages = {"nz.ac.edenz.ResearchBank"})
 @EnableWebMvc
-public class SpringWebConfig extends WebMvcConfigurerAdapter{
+public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/Resources/**").addResourceLocations("/Resources/"); //To change body of generated methods, choose Tools | Templates.
     }
-   
+
     @Bean
-    public ViewResolver viewResolver(){
+    public ViewResolver viewResolver() {
         InternalResourceViewResolver vr = new InternalResourceViewResolver();
         vr.setViewClass(JstlView.class);
         vr.setPrefix("/WEB-INF/view/");
         vr.setSuffix(".jsp");
-         return vr;
+        return vr;
     }
-    
+
     @Bean
-    public CommonsMultipartResolver multiPartResolver(){
-        CommonsMultipartResolver mpr = new CommonsMultipartResolver();
-        mpr.setDefaultEncoding("UTF-8");
-        return mpr;
+    public CommonsMultipartResolver multiPartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(20971520);   // 20MB
+        multipartResolver.setMaxInMemorySize(1048576);  // 1MB
+        return multipartResolver;
     }
 }

@@ -33,7 +33,8 @@ public class DocumentServiceImpl extends BaseDAO implements IDocumentService{
 
     @Override
     public List<Document> findDocumentByDepartment(String department) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "SELECT * FROM documents WHERE department = ?";
+        return getJdbcTemplate().query(query,new DocumentRowMapper(),department);
     }
 
     @Override
@@ -55,30 +56,55 @@ public class DocumentServiceImpl extends BaseDAO implements IDocumentService{
 
     @Override
     public void updateDocument(Document document) {
-        String query = "UPDATE documents"
+        String query = "UPDATE documents "
                 + "SET title = ?,"
+                + "citation = ?,"
                 + "description = ?,"
                 + "department = ?,"
                 + "published_on = ?,"
-                + "published_by = ?,"
-                + "document = ?,"
+                + "author_one = ?,"
+                + "author_two = ?,"
+                + "author_three = ?,"
+                + "author_four = ?,"
+                + "file = ?,"
+                + "keywords = ?"
                 + "WHERE document_id = ?";
         
-        getJdbcTemplate().update(query, document.getTitle(),document.getDescription(),document.getDepartment(),
-                                    document.getPublished_on(),document.getAuthors(),document.getDocument(),
-                                    document.getDocument_id());
+        getJdbcTemplate().update(query, document.getTitle(),document.getCitation(),document.getDescription(),document.getDepartment(),
+                                    document.getPublished_on(),document.getAuthor_one(),document.getAuthor_two(),
+                                    document.getAuthor_three(),document.getAuthor_four(),document.getFile(),
+                                    document.getKeywords(),document.getDocument_id());
     }
 
     @Override
-    public Document findDocumentByUserId(Integer userId) {
+    public List<Document> findDocumentByUserId(Integer userId) {
             String query = "SELECT * FROM documents WHERE user_id = ?";
-            return getJdbcTemplate().queryForObject(query, new DocumentRowMapper(),userId);
+            return getJdbcTemplate().query(query, new DocumentRowMapper(),userId);
     }
 
     @Override
     public List<Document> findRecentDocuments() {
-        String query = "SELECT * FROM documents ORDER BY published_on DESC LIMIT 10";
+        String query = "SELECT * FROM documents ORDER BY document_id DESC LIMIT 10";
         return getJdbcTemplate().query(query, new DocumentRowMapper());
+    }
+
+    @Override
+    public List<Document> findDocumentByName(String name) {
+        String query = "SELECT * FROM documents where (author_one = '"+name+"'  or author_two = '"+name+"'  or author_three = '"+name+"'  or author_four = '"+name+"' )";
+        return getJdbcTemplate().query(query, new DocumentRowMapper());
+    }
+
+    @Override
+    public Integer findNumberofDocument() {
+
+        String query = "SELECT COUNT(*) FROM documents";
+        Integer rows = getJdbcTemplate().queryForObject(query,Integer.class);
+        return rows;
+    }
+
+    @Override
+    public Integer findNumberofDocumentsByDepartment(String department) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

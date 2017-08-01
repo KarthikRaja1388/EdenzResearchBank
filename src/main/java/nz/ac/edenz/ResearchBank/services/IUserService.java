@@ -60,4 +60,16 @@ public interface IUserService {
     
     
     public void updateUser(User user);
+    /**
+     * Method to find user by the email passed
+     * @param email holds the value of email
+     */
+    public User findUserByEmail(String email);
+    /**
+     * Method to find number of active admins
+     * @param accountStatus holds the value of account status
+     * @return number of admins
+     */
+    public Integer findNumberOfAdmins(String accountStatus);
+ 
 }

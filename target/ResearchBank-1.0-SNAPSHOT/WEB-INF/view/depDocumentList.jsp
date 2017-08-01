@@ -8,7 +8,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <s:url var="master_style" value="/Resources/css/master.css" />
+        <s:url var="master_style" value="/Resources/css/masterManager.css" />
         <s:url var="userList_style" value="/Resources/css/userList.css" />
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
@@ -16,15 +16,9 @@
         <title>Document List - Edenz Research Manager</title>
     </head>
     <body>
-        <div class="container-fluid" id="titleContainer">
-            <div class="row" id="titleInfo">
-                <h3 class="text-left col-md-6">Research Bank Manager</h3>
-                <div class="col-md-6" id="userInfo"><p class="pull-right">Super User</p></div>
-            </div>
-        </div>
         <jsp:include page="include/menu.jsp" />
         <div class="container-fluid">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-12">
                 <h3 class="text-left well">Documents</h3>
                 <c:if test="${param.act eq 'sv'}">
                     <div class="alert alert-success text-center">
@@ -48,36 +42,43 @@
                 <table class="table table-hover">
                     <tr>
                         <th>DOCUMENT ID</th>
-                        <th>USER ID</th>
                         <th>TITLE</th>
                         <th>DESCRIPTION</th>
                         <th>DEPARTMENT</th>
                         <th>PUBLISHED ON</th>
-                        <th>PUBLISHED BY</th>
+                        <th>AUTHOR 1</th>
+                        <th>AUTHOR 2</th>
+                        <th>AUTHOR 3</th>
+                        <th>AUTHOR 4</th>
                         <th>DOCUMENT</th>
+                        <th>ACTION</th>
                     </tr>
-                       <c:if test="${empty document}">
+                       <c:if test="${empty depDocument}">
                            <tr>
-                               <td colspan="8"><Strong class="text-center text-danger">No Documents found</strong></td>
+                               <td colspan="11">
+                                   <div class="text-center alert-danger well">No Documents found</div>
+                               </td>
                             </tr>  
                         </c:if>
-                    <c:forEach var="depDocument" items="${document}" varStatus="status">
+                    <c:forEach var="depDocument" items="${depDocument}" varStatus="status">
                         
                         <tr>
-                            <td>${depDocument.document_id}</td>
-                            <td>${depDocument.user_id}</td>
-                            <td>${depDocument.title}</td>
-                            <td>${depDocument.description}</td>
+                            <td>ED${depDocument.document_id}</td>
+                            <td><div style="height: 80px;overflow:hidden;">${depDocument.title}</div></td>
+                            <td><div style="height: 80px;overflow:hidden;">${depDocument.description}</div></td>
                             <td>${depDocument.department}</td>
                             <td>${depDocument.published_on}</td>
-                            <td>${depDocument.published_by}</td>
+                            <td>${depDocument.author_one}</td>
+                            <td>${depDocument.author_two}</td>
+                            <td>${depDocument.author_three}</td>
+                            <td>${depDocument.author_four}</td>
                             <td>${depDocument.document}</td>
 
-                            <s:url var="delete_url" value="admin/deleteDocument" >
-                                <s:param  name="documentId" value="${document.document_id}"/>
+                            <s:url var="delete_url" value="depAdmin/deleteDocument" >
+                                <s:param  name="documentId" value="${depDocument.document_id}"/>
                             </s:url>
-                            <s:url var="edit_url" value="/admin/editDocument" >
-                                <s:param  name="documentId" value="${document.document_id}"/>
+                            <s:url var="edit_url" value="/depAdmin/editDocument" >
+                                <s:param  name="documentId" value="${depDocument.document_id}"/>
                             </s:url>
                             <td><a href="${edit_url}">Edit&nbsp;</a> |<a href="${delete_url}"> Delete</a></td>
                         </tr>

@@ -1,0 +1,70 @@
+/* CSS Document */
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#titleContainer{
+    padding: 0;
+    margin: 0;
+    height:60px;
+    background:#201e98;
+}
+#titleInfo{
+    margin: 0;
+    padding: 0;
+    height: 60px;
+    color:#FCFCFC;
+    border-bottom:1px solid #333;
+    border-top:none;
+    border-right:none;
+    border-left:none;
+}
+#userInfo p{
+    line-height:60px;
+    color:#fff;
+}
+#mainSection{
+    padding: 0;
+    margin: 0;
+}
+#navigation{
+    height:auto;
+    border-radius:0;
+    border-bottom:1px solid #333;
+    border-top:none;
+    border-right:none;
+    border-left:none;
+    background:#646464;
+}
+#navigation ul li{
+    width:120px;
+    line-height:30px;
+}
+#navigation ul li a{
+    padding:0px 10px;
+    margin:0 10px;
+}
+#dashboardContent{
+    margin: 0;
+    padding: 0;
+    height:100vh;
+}
+.upload{
+    padding: 5px;
+    margin: 10px 0px;
+    background: #033C88;
+    color: #fff;
+}
+.documentContainer p{
+    height: 40px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+ footer{
+    height:60px;
+    line-height:60px;
+    text-align:center;
+    background:#bdc3c7;
+ }
