@@ -21,6 +21,7 @@
         <jsp:include page="include/reserachBankNav.jsp" />
         <s:url var="index_url" value="/" />
         <s:url var="logo_url" value="/Resources/img/Edenz-Logo.png" />
+        <s:url var="bg_paper" value="/Resources/img/paper.png" />
         <!--Navigator -->
         <div id="location" class="container-fluid">
             <div class="container"> 
@@ -43,14 +44,14 @@
                 <!--Start of left column-->
                 <div class="col-md-3" id="colLeft">
                     
-                    <section> 
-                        <div id="documentContainer" style="text-align: center">
-                            <img src="${logo_url}" height="20" >
-                            <h6 style="font-size: 12px;text-align: center;">${document.title}</h6>
-                            <p style="font-size: 9px;height:20px;font-weight: bold;">Authors : ${document.author_one}; ${document.author_two};
-                    ${document.author_three}; ${document.author_four}</P>
-                            <p style="font-size: 9px;height: 60px;text-align: left;">${document.citation}</p>
-                            <p style="font-size: 9px;height: 81px;text-align: left;">${document.description}</p>
+                    <section class="col-md-12"> 
+                        <div id="documentContainer" style="text-align: center;color: #666666;background:#ffffff;border: 1px solid #666;">
+                            <div style="border-bottom: 1px solid #ccc;"><img src="${logo_url}" height="20" ></div>
+                            <h6 style="font-size: 12px;text-align: center;padding: 2px;">${document.title}</h6>
+                            <p style="font-size: 9px;height:20px;font-weight: bold;padding: 2px;">Authors : ${document.author_one}; ${document.author_two};
+                                ${document.author_three}; ${document.author_four}</P>
+                            <p style="font-size: 9px;height: 55px;text-align: left;padding: 2px;">${document.citation}</p>
+                            <p style="font-size: 9px;height: 100px;text-align: left;padding: 2px;overflow: hidden;">${document.description}</p>
                         </div>
                     </section>
                 </div><!--End of Left Column-->

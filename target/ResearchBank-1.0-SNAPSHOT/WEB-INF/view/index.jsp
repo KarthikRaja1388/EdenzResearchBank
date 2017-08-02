@@ -22,6 +22,7 @@
     <body>
         <jsp:include page="include/reserachBankNav.jsp" />
         <s:url var="index_url" value="/" />
+        <s:url var="edenz_logo" value="/Resources/img/Edenz-Logo.png"/>
         <!--navigator-->
         <div id="location" class="container-fluid">
             <div class="container">
@@ -30,7 +31,8 @@
         </div>
         <!--Header-->
         <header class="container-fluid well">
-            <div class="container" id="contentHeader">
+            <div class="container text-center" id="contentHeader">
+                <img src="${edenz_logo}" />
                 <h3 class="text-center">Welcome to EDENZ Research Bank</h3>
                 <p class="text-center col-md-6 col-md-offset-3">This Edenz Research Bank is a repository of research outputs of EDENZ students and staff.</p>
                 <div class="col-md-8 col-md-offset-2 input-group" id="search">

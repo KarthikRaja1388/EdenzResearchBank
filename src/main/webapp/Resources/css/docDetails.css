@@ -74,6 +74,9 @@ main h3 {
     height: 300px;
     box-shadow:  2px 2px 2px #333;
     overflow: hidden;
+    background-image: url("/Resources/img/paper.png");
+    background-size: cover;
+    font-family: sans-serif;
 }
 #social {
 	text-align: center;
