@@ -12,8 +12,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class StaffDAOImpl extends BaseDAO implements IStaffDAO{
+    
 
-    @Override
+
+   @Override
     public void addStaff(Staff staff) {
         String query = "INSERT INTO staffs (first_name,last_name,department,designation,profile_url,profile_img)"
                 + "VALUES (:first_name,:last_name,:department,:designation,:profile_url,:profile_img)";
@@ -31,6 +33,8 @@ public class StaffDAOImpl extends BaseDAO implements IStaffDAO{
         SqlParameterSource parameterSource = new MapSqlParameterSource(staffMap);
         getNamedParameterJdbcTemplate().update(query,parameterSource,keyHolder);
     }
+    
+    
 
     @Override
     public void upadteStaff(Staff staff) {
@@ -59,5 +63,6 @@ public class StaffDAOImpl extends BaseDAO implements IStaffDAO{
         String query = "DELETE FROM staffs WHERE staff_id = ?";
         getJdbcTemplate().update(query, staff_id);
     }
+
     
 }

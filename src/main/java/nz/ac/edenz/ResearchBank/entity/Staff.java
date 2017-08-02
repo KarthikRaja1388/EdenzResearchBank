@@ -95,6 +95,7 @@ public class Staff {
         this.profile_img = profile_img;
     }
 
+
     public String getStaff_status() {
         return staff_status;
     }

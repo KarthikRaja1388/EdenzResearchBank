@@ -1,8 +1,8 @@
 
 package nz.ac.edenz.ResearchBank.dao;
 
+import java.io.File;
 import nz.ac.edenz.ResearchBank.entity.Staff;
-import nz.ac.edenz.ResearchBank.entity.User;
 
 
 public interface IStaffDAO {
@@ -29,4 +29,5 @@ public interface IStaffDAO {
      * @param user_id holds the value of user_id passed
      */
     public void deleteStaffById(Integer staff_id);
+    
 }

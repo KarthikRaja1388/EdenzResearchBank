@@ -56,7 +56,7 @@
                         <Strong >Failed to open document</strong>
                     </div> 
                 </c:if>
-            
+
                 <div class="col-md-8" id="colLeft">
                     <c:forEach var="researchOutput" items="${document}">
                         <s:url var="docDetails_url" value="/docHandle">
@@ -78,8 +78,21 @@
                 <s:url var="linkd_icon" value="/Resources/img/linkd.png" />
                 <s:url var="gplus_icon" value="/Resources/img/gplus.png" />
 
-                <div class="col-md-4 well" id="colRight">
-                    <div id="social">
+                <div class="col-md-4" id="colRight">
+                    <!-- Twitter News Feeds -->
+                    <div>
+                        <a class="twitter-timeline"  href="https://twitter.com/search?q=%40EdenzColleges" data-widget-id="891591837546196992" 
+                           data-chrome="nofooter transparent">Tweets about @EdenzColleges</a></div>
+                    <script>!function (d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                            if (!d.getElementById(id)) {
+                                js = d.createElement(s);
+                                js.id = id;
+                                js.src = p + "://platform.twitter.com/widgets.js";
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }
+                        }(document, "script", "twitter-wjs");</script>
+                        <div id="social">
                         <h4 class="text-center">Share</h4>
                         <hr>
                         <ul class="col-md-12 text-center socialIcons">
@@ -89,6 +102,9 @@
                             <li><a href="#"><i class="fa fa-google-plus icons" aria-hidden="true"></i></a></li>
                         </ul>
                     </div>
+                     <div style="margin-top:20px; margin-bottom:20px;">
+                         <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fedenz.colleges%2F&tabs=timeline&width=350&height=350&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false&appId" width="350" height="350" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                     </div>
                 </div>
             </div>
         </main>

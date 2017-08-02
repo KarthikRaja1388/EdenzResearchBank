@@ -37,4 +37,6 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
         multipartResolver.setMaxInMemorySize(1048576);  // 1MB
         return multipartResolver;
     }
+    
+    
 }

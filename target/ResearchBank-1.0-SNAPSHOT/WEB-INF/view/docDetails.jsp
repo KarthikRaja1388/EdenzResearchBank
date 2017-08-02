@@ -20,6 +20,7 @@
         <!--Nav bar-->
         <jsp:include page="include/reserachBankNav.jsp" />
         <s:url var="index_url" value="/" />
+        <s:url var="logo_url" value="/Resources/img/Edenz-Logo.png" />
         <!--Navigator -->
         <div id="location" class="container-fluid">
             <div class="container"> 
@@ -41,10 +42,17 @@
             <div class="container">
                 <!--Start of left column-->
                 <div class="col-md-3" id="colLeft">
+                    
                     <section> 
-                        <div class="well text-center" style="height: 300px">Document Display</div>
+                        <div id="documentContainer" style="text-align: center">
+                            <img src="${logo_url}" height="20" >
+                            <h6 style="font-size: 12px;text-align: center;">${document.title}</h6>
+                            <p style="font-size: 9px;height:20px;font-weight: bold;">Authors : ${document.author_one}; ${document.author_two};
+                    ${document.author_three}; ${document.author_four}</P>
+                            <p style="font-size: 9px;height: 60px;text-align: left;">${document.citation}</p>
+                            <p style="font-size: 9px;height: 81px;text-align: left;">${document.description}</p>
+                        </div>
                     </section>
-                    <div class="well">Download Document Link</div>
                 </div><!--End of Left Column-->
                 <!--Start of center column-->
                 <div  class="col-md-6" id="colCenter">

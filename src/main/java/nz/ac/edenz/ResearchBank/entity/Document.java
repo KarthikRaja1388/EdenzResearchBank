@@ -1,8 +1,6 @@
 package nz.ac.edenz.ResearchBank.entity;
 
 import com.mysql.jdbc.Blob;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 
 public class Document {

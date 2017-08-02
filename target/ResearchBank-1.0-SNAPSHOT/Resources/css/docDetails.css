@@ -70,7 +70,11 @@ main h3 {
 .recentlyAddedProjects h4 {
 	color: #34495e;
 }
-
+#documentContainer{
+    height: 300px;
+    box-shadow:  2px 2px 2px #333;
+    overflow: hidden;
+}
 #social {
 	text-align: center;
 }
