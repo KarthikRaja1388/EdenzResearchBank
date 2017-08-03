@@ -17,7 +17,7 @@ public class Document {
     private String author_two;
     private String author_three;
     private String author_four;
-    private Blob file;
+    //private Blob file;
     private String keywords;
 
     public String getAuthor_one() {
@@ -131,7 +131,7 @@ public class Document {
 
     public void setFile(CommonsMultipartFile[] file) {
         this.file = file;
-    }*/
+    }
 
     public Blob getFile() {
         return file;
@@ -139,7 +139,7 @@ public class Document {
 
     public void setFile(Blob file) {
         this.file = file;
-    }
+    }*/
    
     
 }

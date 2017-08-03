@@ -37,7 +37,11 @@ public class DocumentController {
     public String addDocument(@ModelAttribute("command") Document document,Model model, HttpSession session) throws FileNotFoundException, IOException {
              Integer sessionUserId = (Integer) session.getAttribute("userId");
              document.setUser_id(sessionUserId);
+             try{
              documentService.addDocument(document);
+             }catch(Exception e){
+                 e.printStackTrace();
+             }
              return "redirect:/admin/documents?act=sv";
 
     }

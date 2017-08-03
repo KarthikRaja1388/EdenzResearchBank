@@ -17,9 +17,9 @@ public class DocumentDAOImpl extends BaseDAO implements IDocumentDAO{
     @Override
     public void addDocument(Document document) {
         String query = "INSERT INTO documents (user_id,title,citation,description,department,published_on,author_one,author_two,"
-                + "author_three,author_four,file,keywords) "
+                + "author_three,author_four,keywords) "
                 + "VALUES (:user_id,:title,:citation,:description,:department,:published_on,:author_one,:author_two,"
-                + ":author_three,:author_four,:file,:keywords)";
+                + ":author_three,:author_four,:keywords)";
         
         Map documentMap = new HashMap();
         documentMap.put("user_id", document.getUser_id());
@@ -32,7 +32,7 @@ public class DocumentDAOImpl extends BaseDAO implements IDocumentDAO{
         documentMap.put("author_two",document.getAuthor_two());
         documentMap.put("author_three",document.getAuthor_three());
         documentMap.put("author_four",document.getAuthor_four());
-        documentMap.put("file", document.getFile());
+        //documentMap.put("file", document.getFile());
         documentMap.put("keywords", document.getKeywords());
         
         KeyHolder keyHolder = new GeneratedKeyHolder();

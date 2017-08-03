@@ -21,7 +21,7 @@
 <!--TO DO Update -->
         <jsp:include page="include/menu.jsp" />
         <div class="container-fluid">
-            <div class="col-md-8 col-md-offset-2 ">
+            <div class="col-md-8 col-md-offset-2 " style="height:100%">
                 <h3 class="text-center well">Edit Document</h3>
                 <s:url var="updateDocument_url" value="/admin/updateDocument" >
                     <s:param name="documentid" value="${document.document_id}" />
@@ -79,10 +79,7 @@
                         <label for="keywords">Keywords</label>
                         <f:input path="keywords" type="text" class="form-control" id="keywords" />
                     </div>
-                    <div class="form-group">
-                        <label for="document">Document</label>
-                        <f:input path="file" type="file" class="form-control" id="document" />
-                    </div>
+
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary form-control">Submit</button>
                     </div>

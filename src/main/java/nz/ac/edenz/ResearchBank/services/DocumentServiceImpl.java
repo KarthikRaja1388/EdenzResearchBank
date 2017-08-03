@@ -66,13 +66,12 @@ public class DocumentServiceImpl extends BaseDAO implements IDocumentService{
                 + "author_two = ?,"
                 + "author_three = ?,"
                 + "author_four = ?,"
-                + "file = ?,"
                 + "keywords = ?"
-                + "WHERE document_id = ?";
+                + " WHERE document_id = ?";
         
         getJdbcTemplate().update(query, document.getTitle(),document.getCitation(),document.getDescription(),document.getDepartment(),
                                     document.getPublished_on(),document.getAuthor_one(),document.getAuthor_two(),
-                                    document.getAuthor_three(),document.getAuthor_four(),document.getFile(),
+                                    document.getAuthor_three(),document.getAuthor_four(),
                                     document.getKeywords(),document.getDocument_id());
     }
 

@@ -26,7 +26,7 @@ public class DocumentRowMapper implements RowMapper<Document>{
         document.setAuthor_three(rs.getString("author_three"));
         document.setAuthor_four(rs.getString("author_four"));
         //document.setDocument_path(rs.getString("document_path"));
-        document.setFile((Blob) rs.getBlob("file"));
+        //document.setFile((Blob) rs.getBlob("file"));
         document.setKeywords(rs.getString("keywords"));
         
         
