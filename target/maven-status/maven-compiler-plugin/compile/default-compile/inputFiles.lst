@@ -1,6 +1,7 @@
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\dao\BaseDAO.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\rowmapper\DocumentRowMapper.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\config\HibernateConfig.java
+S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\command\SearchCommand.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\rowmapper\StaffRowMapper.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\dao\IProfileDAO.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\controller\LoginController.java

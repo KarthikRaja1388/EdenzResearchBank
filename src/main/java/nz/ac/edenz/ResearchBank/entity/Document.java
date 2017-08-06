@@ -1,7 +1,5 @@
 package nz.ac.edenz.ResearchBank.entity;
 
-import com.mysql.jdbc.Blob;
-
 
 public class Document {
     
@@ -17,7 +15,6 @@ public class Document {
     private String author_two;
     private String author_three;
     private String author_four;
-    //private Blob file;
     private String keywords;
 
     public String getAuthor_one() {
@@ -116,30 +113,6 @@ public class Document {
     public void setKeywords(String keywords) {
         this.keywords = keywords;
     }
-
-  /* public String getDocument_path() {
-        return document_path;
-    }
-
-    public void setDocument_path(String document_path) {
-        this.document_path = document_path;
-    }
-
-    public CommonsMultipartFile[] getFile() {
-        return file;
-    }
-
-    public void setFile(CommonsMultipartFile[] file) {
-        this.file = file;
-    }
-
-    public Blob getFile() {
-        return file;
-    }
-
-    public void setFile(Blob file) {
-        this.file = file;
-    }*/
    
     
 }

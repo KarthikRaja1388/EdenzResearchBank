@@ -15,6 +15,7 @@ nz\ac\edenz\ResearchBank\services\ProfileServiceImpl.class
 nz\ac\edenz\ResearchBank\dao\StaffDAOImpl.class
 nz\ac\edenz\ResearchBank\services\IDocumentService.class
 nz\ac\edenz\ResearchBank\entity\Profile.class
+nz\ac\edenz\ResearchBank\command\SearchCommand.class
 nz\ac\edenz\ResearchBank\rowmapper\ProfileRowMapper.class
 nz\ac\edenz\ResearchBank\services\IUserService.class
 nz\ac\edenz\ResearchBank\dao\BaseDAO.class

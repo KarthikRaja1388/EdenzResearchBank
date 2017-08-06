@@ -1,16 +1,20 @@
 
 package nz.ac.edenz.ResearchBank.controller;
 
+import java.util.List;
 import javax.servlet.http.HttpSession;
+import nz.ac.edenz.ResearchBank.command.SearchCommand;
 import nz.ac.edenz.ResearchBank.entity.Document;
 import nz.ac.edenz.ResearchBank.entity.Staff;
 import nz.ac.edenz.ResearchBank.services.IDocumentService;
 import nz.ac.edenz.ResearchBank.services.IStaffService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -23,7 +27,28 @@ public class ResearchBankController {
     @RequestMapping({"/","*"})
     public String homePage(Model model,@ModelAttribute("staff")Staff staff){
         model.addAttribute("document",documentService.findRecentDocuments());
+        model.addAttribute("searchModel", new SearchCommand());
         return "index";
+    }
+    
+    @RequestMapping(value = "/search",method = RequestMethod.GET)
+    public String searchForDocuments(Model model,@ModelAttribute("searchCommand")SearchCommand searchCommand,
+            HttpSession session){
+        String searchString = searchCommand.getSearchString();
+        session.setAttribute("sessionSearchString",searchString);
+        model.addAttribute("searchModel", new SearchCommand());
+        List<Document> fetchedDocuments = documentService.searchByString(searchString);
+        model.addAttribute("documents",fetchedDocuments);        
+        return "redirect:/searchResult";
+    }
+    
+    @RequestMapping("/searchResult")
+    public String searchResult(Model model,@ModelAttribute("searchCommand")SearchCommand searchCommand,HttpSession session){
+        String searchString = (String) session.getAttribute("sessionSearchString");
+        model.addAttribute("searchModel", new SearchCommand());
+        model.addAttribute("searchKey",searchString);
+        model.addAttribute("documents",documentService.searchByString(searchString));        
+        return "searchResults" ;
     }
     
     @RequestMapping(value = "/docHandle")
@@ -60,10 +85,11 @@ public class ResearchBankController {
             @RequestParam("name")String name){
         String[] splittedName = name.split(", ");
         String firstName = splittedName[0];
-        String lastName = splittedName[1];
+        String lastName = splittedName[1]+";";
         String fullName = firstName+" "+lastName;
         model.addAttribute("fullName",fullName);
         model.addAttribute("staff",staffService.findDesignation(firstName, lastName));
+        System.out.println(name);
         model.addAttribute("documents", documentService.findDocumentByName(name));
         return "researchProfile";
     }
@@ -80,4 +106,5 @@ public class ResearchBankController {
     public void addDocumentIdInSession(Document document,HttpSession session){
         session.setAttribute("documentId", document.getDocument_id());
     }
+    
 }

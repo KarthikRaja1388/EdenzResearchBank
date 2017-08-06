@@ -84,4 +84,11 @@ public interface IDocumentService {
      * @return the number of documents based on the department
      */
     public Integer findNumberofDocumentsByDepartment(String department);
+    
+    /**
+     * Method to search documents based on the string
+     * @param seacrhString holds the value of string passed
+     * @return list of documents where search string is found
+     */
+    public List<Document> searchByString(String seacrhString);
 }

@@ -89,7 +89,8 @@ public class DocumentServiceImpl extends BaseDAO implements IDocumentService{
 
     @Override
     public List<Document> findDocumentByName(String name) {
-        String query = "SELECT * FROM documents where (author_one = '"+name+"'  or author_two = '"+name+"'  or author_three = '"+name+"'  or author_four = '"+name+"' )";
+       String query = "SELECT * FROM documents WHERE author_one = '"+name+"'  or author_two = '"+name+"'  or author_three = '"+name+"'  or author_four = '"+name+"'";
+        //String query = "SELECT * FROM documents WHERE match(title,citation,description,department,published_on,author_one,author_two,author_three,author_four,keywords) against('"+name+"')";
         return getJdbcTemplate().query(query, new DocumentRowMapper());
     }
 
@@ -104,6 +105,14 @@ public class DocumentServiceImpl extends BaseDAO implements IDocumentService{
     @Override
     public Integer findNumberofDocumentsByDepartment(String department) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Document> searchByString(String seacrhString) {
+        String query = "SELECT * FROM documents WHERE match(title,citation,description," +
+"department,published_on,author_one,author_two,author_three,author_four,keywords) against('"+seacrhString+"')";
+        
+        return getJdbcTemplate().query(query, new DocumentRowMapper());
     }
     
 }
