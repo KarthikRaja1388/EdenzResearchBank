@@ -87,12 +87,9 @@
                     <div class="col-md-12 well">
                         <h4 class="text-center"><b>Share</b></h4>
                         <hr>
-                        <ul class="col-md-12 text-center socialIcons" >
-                            <li><a href="#"><i class="fa fa-facebook icons" aria-hidden="true"></i></a></li>
-                            <li><a href="#" ><i class="fa fa-twitter icons" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin icons" aria-hidden="true"></i></a></li>
-                            <li><a href="#" ><i class="fa fa-google-plus icons" aria-hidden="true"></i></a></li>
-                        </ul>
+                        <div id="shareIcon" class="col-md-12 text-center">
+                            <div class="addthis_inline_share_toolbox_noue"></div>
+                        </div>
                     </div><!--End of share container-->
                     <!--Start of About container-->
                     <div class="col-md-12 list-group well" id="about">
@@ -125,5 +122,6 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5983b80d7d865950"></script>
     </body>
 </html>
