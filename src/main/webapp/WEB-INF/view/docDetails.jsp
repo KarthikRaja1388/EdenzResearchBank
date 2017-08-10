@@ -84,7 +84,7 @@
                             <input type="radio" name="searchcol" value="searchcol">Search this collection
                     </div><!--End of search container-->
                     <!--Start of share container-->
-                    <div class="col-md-12 well">
+                    <div class="col-md-12 well" id="social">
                         <h4 class="text-center"><b>Share</b></h4>
                         <hr>
                         <div id="shareIcon" class="col-md-12 text-center">

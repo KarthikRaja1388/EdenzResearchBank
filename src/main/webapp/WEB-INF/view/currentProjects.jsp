@@ -31,10 +31,24 @@
             </div>
         </div>
         <main style="height: 100vh;">
-            <div>
-                <h3 class="text-center">Build in progress..</h3>
-            </div>
-            <div class="loader text-center container-fluid"></div>
+            <c:forEach var="currentProjects" items="${projects}">
+                <s:url var="docDetails_url" value="/docHandle">
+                    <s:param name="documentId" value="${currentProjects.project_id}" />
+                </s:url>
+                <div class="well">
+                    <a href="${docDetails_url}">${currentProjects.title}</a>
+                    <h6>
+                        <span style="font-weight: bold;">Authors :</span>
+                        <a href="#" target="_blank">${currentProjects.author_one}</a>
+                        <a href="#" target="_blank">${currentProjects.author_two}</a>
+                        <a href="#" target="_blank">${currentProjects.author_three}</a>
+                        <a href="#" target="_blank">${currentProjects.author_four}</a>
+                    </h6>  
+                    <div style="overflow: hidden;height:60px;">
+                        <p class="textLimit">${currentProjects.description}</p>
+                    </div>
+                </div>
+            </c:forEach>
         </main>
         <!--footer-->
         <footer>

@@ -29,5 +29,4 @@ public interface IDocumentDAO {
      * Method to upload document
      * @param document holds the value of document passed
      */
-    public void uploadFile(Document document);
 }

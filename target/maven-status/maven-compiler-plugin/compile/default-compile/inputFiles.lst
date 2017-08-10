@@ -1,3 +1,5 @@
+S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\rowmapper\CurrentProjectsRowMapper.java
+S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\dao\CurrentProjectsDAOImpl.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\dao\BaseDAO.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\rowmapper\DocumentRowMapper.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\config\HibernateConfig.java
@@ -7,6 +9,7 @@ S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\dao\IProfileDAO.
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\controller\LoginController.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\services\StaffServiceImpl.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\controller\ResearchBankController.java
+S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\entity\CurrentProjects.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\dao\IUserDAO.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\controller\DocumentController.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\command\LoginCommand.java
@@ -18,6 +21,7 @@ S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\config\ResearchB
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\entity\User.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\config\SpringWebConfig.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\entity\Document.java
+S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\services\CurrentProjectsServiceImpl.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\services\ProfileServiceImpl.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\controller\UserController.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\dao\StaffDAOImpl.java
@@ -26,10 +30,13 @@ S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\config\SpringRoo
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\services\IProfileService.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\services\IDocumentService.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\entity\Staff.java
+S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\dao\ICurrentProjectDAO.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\rowmapper\UserRowMapper.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\dao\IStaffDAO.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\dao\ProfileDAOImpl.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\entity\Profile.java
+S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\exception\NoDocumentException.java
+S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\services\ICurrentProjectService.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\services\IStaffService.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\exception\UserDiabledException.java
 S:\Netbeans\ResearchBank\src\main\java\nz\ac\edenz\ResearchBank\controller\StaffController.java

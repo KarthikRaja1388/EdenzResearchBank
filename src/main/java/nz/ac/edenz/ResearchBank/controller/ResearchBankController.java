@@ -6,10 +6,10 @@ import javax.servlet.http.HttpSession;
 import nz.ac.edenz.ResearchBank.command.SearchCommand;
 import nz.ac.edenz.ResearchBank.entity.Document;
 import nz.ac.edenz.ResearchBank.entity.Staff;
+import nz.ac.edenz.ResearchBank.services.ICurrentProjectService;
 import nz.ac.edenz.ResearchBank.services.IDocumentService;
 import nz.ac.edenz.ResearchBank.services.IStaffService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,6 +23,8 @@ public class ResearchBankController {
     IDocumentService documentService;
     @Autowired
     IStaffService staffService;
+    @Autowired
+    ICurrentProjectService currentProjectService;
     
     @RequestMapping({"/","*"})
     public String homePage(Model model,@ModelAttribute("staff")Staff staff){
@@ -44,11 +46,20 @@ public class ResearchBankController {
     
     @RequestMapping("/searchResult")
     public String searchResult(Model model,@ModelAttribute("searchCommand")SearchCommand searchCommand,HttpSession session){
-        String searchString = (String) session.getAttribute("sessionSearchString");
-        model.addAttribute("searchModel", new SearchCommand());
-        model.addAttribute("searchKey",searchString);
-        model.addAttribute("documents",documentService.searchByString(searchString));        
-        return "searchResults" ;
+            String searchString = (String) session.getAttribute("sessionSearchString");
+            model.addAttribute("searchModel", new SearchCommand());
+            model.addAttribute("searchKey",searchString);
+            List<Document> searchResults = documentService.searchByString(searchString);
+            
+            if(searchResults == null){
+                model.addAttribute("noDocument", "No Docuemnts Found");
+                return "redirect:/searchResult?act=no_doc";
+            }else{
+                model.addAttribute("documents",searchResults);        
+                return "searchResults" ;
+            }
+
+       
     }
     
     @RequestMapping(value = "/docHandle")
@@ -69,6 +80,7 @@ public class ResearchBankController {
     
     @RequestMapping(value = "/currentProjects")
     public String currentProjects(Model model){
+        model.addAttribute("projects",currentProjectService.findCurrentProjects());
         return "currentProjects";
     }
     @RequestMapping(value = "/pastProjects")
@@ -85,11 +97,10 @@ public class ResearchBankController {
             @RequestParam("name")String name){
         String[] splittedName = name.split(", ");
         String firstName = splittedName[0];
-        String lastName = splittedName[1]+";";
+        String lastName = splittedName[1];
         String fullName = firstName+" "+lastName;
         model.addAttribute("fullName",fullName);
         model.addAttribute("staff",staffService.findDesignation(firstName, lastName));
-        System.out.println(name);
         model.addAttribute("documents", documentService.findDocumentByName(name));
         return "researchProfile";
     }

@@ -88,6 +88,8 @@ main h3{
 
 #social{
     text-align:center;
+    height: 150px;
+    margin: 15px 0px;
 }
 #colRight div{
     padding-bottom:25px;

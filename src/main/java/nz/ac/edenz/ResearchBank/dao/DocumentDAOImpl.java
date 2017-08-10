@@ -3,8 +3,6 @@ package nz.ac.edenz.ResearchBank.dao;
 import java.util.HashMap;
 import java.util.Map;
 import nz.ac.edenz.ResearchBank.entity.Document;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -56,9 +54,6 @@ public class DocumentDAOImpl extends BaseDAO implements IDocumentDAO{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void uploadFile(Document document) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
     
 }

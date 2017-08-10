@@ -46,16 +46,16 @@
                 </div>
                  
                     <div class="col-md-8" id="colRight" style="height: 100%;">
-                    <c:forEach var="document" items="${documents}" varStatus="status">
+                    <c:forEach var="researchOutputs" items="${documents}" varStatus="status">
                         <s:url var="docDetails_url" value="/docHandle">
-                            <s:param name="documentId" value="${document.document_id}" />
+                            <s:param name="documentId" value="${researchOutputs.document_id}" />
                         </s:url>
-                        <c:if test="${document.title eq 'null'}">
+                        <c:if test="${researchOutputs.title eq 'null'}">
                             <div class="alert alert-warning text-center">No Research Papers found</div>
                         </c:if>
                     <div class="well row">
-                        <a href="${docDetails_url}"><h4>${document.title}</h4></a>
-                        <p>${document.citation}</p>
+                        <a href="${docDetails_url}"><h4>${researchOutputs.title}</h4></a>
+                        <p>${researchOutputs.citation}</p>
                     </div>
                     </c:forEach>
                 </div>

@@ -31,12 +31,14 @@
         <div class="container-fluid">
             <div class="container">
                 <div class="col-md-8 " id="col-right">
+                    <c:if test="${param.act eq 'no_doc'}">
+                        <div class="alert alert-danger well text-center">${noDocument}</div>
+                    </c:if>
                     <h3 class="text-left well">Search Result for '${searchKey}'</h3>
                     <c:forEach var="document" items="${documents}" varStatus="status" >
                         <s:url var="docDetails_url" value="/docHandle">
                             <s:param name="documentId" value="${document.document_id}" />
                         </s:url>
-
                         <div class=" well">
                             <a href="${docDetails_url}" class="documentTitleLink"><h4>${document.title}</h4></a>
                             <h6>
