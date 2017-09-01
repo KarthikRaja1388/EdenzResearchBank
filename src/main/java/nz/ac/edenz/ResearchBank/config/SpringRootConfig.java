@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package nz.ac.edenz.ResearchBank.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -17,9 +13,12 @@ public class SpringRootConfig {
     public BasicDataSource dataSource(){
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/edenz_vault_manager");
-        dataSource.setUsername("root");
-        dataSource.setPassword("root");
+        //dataSource.setUrl("jdbc:mysql://mysql3000.mochahost.com/karthik_researchbank");
+        //dataSource.setUsername("karthik_root");
+        //dataSource.setPassword("Ed3nz2017");
+        dataSource.setUrl("jdbc:mysql://mysql004.mochahost.com/ganeshan_researchbank");
+        dataSource.setUsername("karthik_ganesha");
+        dataSource.setPassword("sQ7az934");
         dataSource.setValidationQuery("SELECT 1");
         
         return dataSource;

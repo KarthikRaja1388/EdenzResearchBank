@@ -1,12 +1,12 @@
 package nz.ac.edenz.ResearchBank.entity;
 
 
+
 public class Document {
     
-
     private Integer document_id;
     private Integer user_id;
-    private String title;    
+    private String title;  
     private String citation;
     private String description;
     private String department;

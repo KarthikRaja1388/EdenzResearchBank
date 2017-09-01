@@ -5,8 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import nz.ac.edenz.ResearchBank.command.SearchCommand;
 import nz.ac.edenz.ResearchBank.entity.Document;
+import nz.ac.edenz.ResearchBank.entity.Projects;
 import nz.ac.edenz.ResearchBank.entity.Staff;
-import nz.ac.edenz.ResearchBank.services.ICurrentProjectService;
 import nz.ac.edenz.ResearchBank.services.IDocumentService;
 import nz.ac.edenz.ResearchBank.services.IStaffService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import nz.ac.edenz.ResearchBank.services.IProjectsService;
 
 @Controller
 public class ResearchBankController {
@@ -24,7 +25,7 @@ public class ResearchBankController {
     @Autowired
     IStaffService staffService;
     @Autowired
-    ICurrentProjectService currentProjectService;
+    IProjectsService projectService;
     
     @RequestMapping({"/","*"})
     public String homePage(Model model,@ModelAttribute("staff")Staff staff){
@@ -53,7 +54,7 @@ public class ResearchBankController {
             
             if(searchResults == null){
                 model.addAttribute("noDocument", "No Docuemnts Found");
-                return "redirect:/searchResult?act=no_doc";
+                return "searchResults?act=no_doc";
             }else{
                 model.addAttribute("documents",searchResults);        
                 return "searchResults" ;
@@ -64,7 +65,7 @@ public class ResearchBankController {
     
     @RequestMapping(value = "/docHandle")
     public String viewDocDetails(@RequestParam("documentId")Integer documentId,Model model,HttpSession session,
-            @ModelAttribute("document")Document document){
+            @ModelAttribute ("document")Document document){
         Integer selectedDocumentId = (Integer) session.getAttribute("documentId");
        try{
             
@@ -80,11 +81,23 @@ public class ResearchBankController {
     
     @RequestMapping(value = "/currentProjects")
     public String currentProjects(Model model){
-        model.addAttribute("projects",currentProjectService.findCurrentProjects());
+        model.addAttribute("projects",projectService.findCurrentProjects());
         return "currentProjects";
     }
+    
+    @RequestMapping(value = "/resarchHandle")
+    public String viewResearchDetails(@RequestParam("projectId")Integer projectId,Model model,HttpSession session,
+            @ModelAttribute("project")Projects project){
+        Integer selectedReserachId = (Integer) session.getAttribute("projectId");
+        session.setAttribute("sessionResearchId", selectedReserachId);
+        model.addAttribute("selectedProject", projectService.findProjectById(projectId));
+        return "researchDetails";
+        
+    }
+    
     @RequestMapping(value = "/pastProjects")
     public String pastProjects(Model model){
+        model.addAttribute("projects",projectService.findPastProjects());
         return "pastProjects";
     }
     @RequestMapping("/staffResearch")
@@ -118,4 +131,7 @@ public class ResearchBankController {
         session.setAttribute("documentId", document.getDocument_id());
     }
     
+    public void addProjectIdInSession(Projects project,HttpSession session){
+        session.setAttribute("projectId", project.getProject_id());
+    }
 }

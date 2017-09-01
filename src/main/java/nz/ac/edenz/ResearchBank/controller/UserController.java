@@ -1,11 +1,13 @@
 package nz.ac.edenz.ResearchBank.controller;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import nz.ac.edenz.ResearchBank.entity.User;
 import nz.ac.edenz.ResearchBank.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +20,7 @@ public class UserController {
     IUserService userService;
 
     @RequestMapping(value = "/admin/addUser")
-    public String addUserPage(@ModelAttribute("command") User user, Model model, HttpSession session) {
+    public String addUserPage(@ModelAttribute ("command") @Valid User user, Model model, HttpSession session) {
         String email = (String) session.getAttribute("email");
         User currentUser = userService.findUserByEmail(email);
         model.addAttribute("currentUser", currentUser.getFirst_name());
@@ -27,9 +29,13 @@ public class UserController {
     }
 
     @RequestMapping(value = "/admin/saveuser", method = RequestMethod.GET)
-    public String addUser(@ModelAttribute("command") User user, Model model) {
-        userService.addUser(user);
-        return "redirect:/admin/userList?act=sv";
+    public String addUser(@ModelAttribute("command") @Valid User user, Model model, BindingResult result) {
+        if(result.hasErrors()){
+            return "addUserPage";
+        }else{
+            userService.addUser(user);
+            return "redirect:/admin/userList?act=sv";
+        }
     }
 
     @RequestMapping(value = "/admin/userList")
@@ -59,7 +65,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/admin/updateUser", method = RequestMethod.POST)
-    public String updateUser(Model model, @ModelAttribute("user") User user, HttpSession session) {
+    public String updateUser(Model model, @ModelAttribute("user")@Valid User user, HttpSession session) {
 
         try {
             Integer userId = (Integer) session.getAttribute("sessionUserId");

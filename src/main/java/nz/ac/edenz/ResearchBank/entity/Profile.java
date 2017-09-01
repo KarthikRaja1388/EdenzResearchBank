@@ -4,6 +4,7 @@ package nz.ac.edenz.ResearchBank.entity;
 
 public class Profile {
     
+   
     private String first_name;
     private String last_name;
     private String profile_url;

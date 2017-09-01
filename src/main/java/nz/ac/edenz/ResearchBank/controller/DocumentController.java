@@ -3,6 +3,7 @@ package nz.ac.edenz.ResearchBank.controller;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import nz.ac.edenz.ResearchBank.entity.Document;
 import nz.ac.edenz.ResearchBank.services.IDocumentService;
 import nz.ac.edenz.ResearchBank.services.IUserService;
@@ -24,7 +25,7 @@ public class DocumentController {
     IUserService userService;
 
     @RequestMapping(value = {"/admin/addDocument", "/depAdmin/addDocument"})
-    public String addDocumentPage(@ModelAttribute("command") Document document, Model model, HttpSession session) {
+    public String addDocumentPage(@ModelAttribute("command")@Valid Document document, Model model, HttpSession session) {
         String currentUserName = (String) session.getAttribute("userFirstName");
         String role = (String) session.getAttribute("role");
         model.addAttribute("currentUser", currentUserName);
@@ -34,15 +35,16 @@ public class DocumentController {
     }
 
     @RequestMapping(value = "/admin/saveDocument",method=RequestMethod.POST)
-    public String addDocument(@ModelAttribute("command") Document document,Model model, HttpSession session) throws FileNotFoundException, IOException {
+    public String addDocument(@Valid @ModelAttribute("command") Document document,Model model, 
+            HttpSession session,BindingResult result) throws FileNotFoundException, IOException {
              Integer sessionUserId = (Integer) session.getAttribute("userId");
              document.setUser_id(sessionUserId);
-             try{
-             documentService.addDocument(document);
-             }catch(Exception e){
-                 e.printStackTrace();
+             if(result.hasErrors()){
+                 return "redirect:/admin/addDocument";
+             }else{
+                documentService.addDocument(document);
+                return "redirect:/admin/documents?act=sv";
              }
-             return "redirect:/admin/documents?act=sv";
 
     }
 
@@ -127,12 +129,6 @@ public class DocumentController {
         String name = (String) session.getAttribute("userFirstName");
         model.addAttribute("currentUser", name);
         return "depDocumentList";
-    }
-    
-    @RequestMapping(value = {"/admin/upload","/depAdmin/upload"},method =RequestMethod.POST )
-    public String uploadFile(@ModelAttribute("document")Document document,BindingResult result){
-        return null;
-        
     }
     
 

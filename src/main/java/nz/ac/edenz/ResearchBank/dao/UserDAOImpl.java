@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package nz.ac.edenz.ResearchBank.dao;
 
 import java.util.HashMap;
@@ -17,11 +13,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserDAOImpl extends BaseDAO implements IUserDAO{
 
-    /**
-     * This method adds the user to database
-     * @param user holds the user object passed
-     * 
-     */
+
     @Override
     public void addUser(User user) {
         String query = "insert into user_info(first_name,last_name,department,email,password)values(:first_name,:last_name,:department,:email,:password)";

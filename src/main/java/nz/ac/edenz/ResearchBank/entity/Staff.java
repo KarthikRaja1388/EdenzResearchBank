@@ -2,41 +2,16 @@
 package nz.ac.edenz.ResearchBank.entity;
 
 import java.sql.Blob;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "staffs")
 public class Staff {
-    @Id
-    @GeneratedValue
-    @Column(name = "staff_id")
+
     private Integer staff_id;
-    
-    @Column(name = "first_name")
     private String first_name;
-    
-    @Column(name = "last_name")
     private String last_name;
-    
-    @Column(name = "department")
     private String department;
-
-    @Column(name = "designation")    
     private String designation;
-
-    @Column(name = "profile_url")    
     private String profile_url;
-    
-    @Column(name = "profile_img") 
-    @Lob
-    private Blob profile_img;
-    
-    @Column(name = "staff_status")    
+    private Blob profile_img;  
     private String staff_status;
 
     public Integer getStaff_id() {
